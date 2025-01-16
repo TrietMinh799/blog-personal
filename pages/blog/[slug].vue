@@ -216,42 +216,56 @@ useHead(() => ({
 <style>
 /* Custom styles for markdown content */
 .prose {
-  @apply text-gray-800;
+  color: var(--prose-text);
 }
 
 .prose h2 {
   @apply text-2xl font-bold mt-8 mb-4;
+  color: var(--prose-headings);
 }
 
 .prose h3 {
   @apply text-xl font-semibold mt-6 mb-3;
+  color: var(--prose-headings);
 }
 
 .prose p {
   @apply mb-4 leading-relaxed;
+  color: var(--prose-text);
 }
 
 .prose a {
-  @apply text-blue-600 hover:text-blue-800 transition-colors;
+  color: var(--prose-link);
+}
+
+.prose a:hover {
+  color: var(--prose-link-hover);
 }
 
 .prose pre {
-  @apply bg-gray-50 p-4 rounded-lg overflow-x-auto;
+  @apply p-4 rounded-lg overflow-x-auto;
+  background-color: var(--prose-pre-bg);
 }
 
 .prose code {
-  @apply bg-gray-50 px-1 py-0.5 rounded text-sm;
+  @apply px-1 py-0.5 rounded text-sm;
+  background-color: var(--prose-code-block-bg);
+  color: var(--prose-code-inline);
 }
 
 .prose blockquote {
-  @apply border-l-4 border-gray-200 pl-4 italic;
+  @apply pl-4 italic;
+  border-left: 4px solid var(--prose-blockquote-border);
+  color: var(--prose-blockquote);
 }
 
 .prose ul {
   @apply list-disc list-inside mb-4;
+  color: var(--prose-text);
 }
 
 .prose ol {
   @apply list-decimal list-inside mb-4;
+  color: var(--prose-text);
 }
 </style>

@@ -1,0 +1,246 @@
+/* assets/css/themes.css */
+/* Morning Theme (6AM-4PM) */
+.theme-morning {
+  --bg-primary: #f9fafb;
+  --bg-secondary: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --accent-color: #3b82f6;
+  --border-color: #e5e7eb;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --nav-text: #111827;
+  --nav-text-hover: #3b82f6;
+  
+  /* Prose specific colors remain the same */
+  --prose-headings: #111827;
+  --prose-text: #374151;
+  --prose-bold: #111827;
+  --prose-code-inline: #111827;
+  --prose-code-block-bg: #f3f4f6;
+  --prose-code-block-text: #111827;
+  --prose-pre-bg: #f3f4f6;
+  --prose-pre-text: #374151;
+  --prose-blockquote: #6b7280;
+  --prose-blockquote-border: #e5e7eb;
+  --prose-link: #2563eb;
+  --prose-link-hover: #1d4ed8;
+  --prose-table-border: #e5e7eb;
+  --prose-table-header: #111827;
+  --prose-table-row: #374151;
+  --prose-table-row-alt: #f9fafb;
+  --prose-hr: #e5e7eb;
+}
+
+/* Evening Theme (4PM-8PM) */
+.theme-evening {
+  --bg-primary: #fef3c7;
+  --bg-secondary: #fffbeb;
+  --text-primary: #92400e;
+  --text-secondary: #b45309;
+  --accent-color: #d97706;
+  --border-color: #fcd34d;
+  --card-shadow: 0 1px 3px rgba(217, 119, 6, 0.1);
+  --nav-bg: rgba(255, 251, 235, 0.8);
+  --nav-text: #92400e;
+  --nav-text-hover: #d97706;
+  
+  /* Prose specific colors remain the same */
+  --prose-headings: #92400e;
+  --prose-text: #b45309;
+  --prose-bold: #92400e;
+  --prose-code-inline: #92400e;
+  --prose-code-block-bg: #fff7ed;
+  --prose-code-block-text: #92400e;
+  --prose-pre-bg: #fff7ed;
+  --prose-pre-text: #b45309;
+  --prose-blockquote: #b45309;
+  --prose-blockquote-border: #fcd34d;
+  --prose-link: #d97706;
+  --prose-link-hover: #b45309;
+  --prose-table-border: #fcd34d;
+  --prose-table-header: #92400e;
+  --prose-table-row: #b45309;
+  --prose-table-row-alt: #fffbeb;
+  --prose-hr: #fcd34d;
+}
+
+/* Night Theme (8PM-6AM) */
+.theme-night {
+  --bg-primary: #1f2937;
+  --bg-secondary: #111827;
+  --text-primary: #f9fafb;
+  --text-secondary: #e5e7eb;
+  --accent-color: #60a5fa;
+  --border-color: #374151;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --nav-bg: rgba(17, 24, 39, 0.8);
+  --nav-text: #f9fafb;
+  --nav-text-hover: #60a5fa;
+  
+  /* Prose specific colors remain the same */
+  --prose-headings: #f9fafb;
+  --prose-text: #e5e7eb;
+  --prose-bold: #f9fafb;
+  --prose-code-inline: #e5e7eb;
+  --prose-code-block-bg: #111827;
+  --prose-code-block-text: #e5e7eb;
+  --prose-pre-bg: #111827;
+  --prose-pre-text: #e5e7eb;
+  --prose-blockquote: #9ca3af;
+  --prose-blockquote-border: #374151;
+  --prose-link: #60a5fa;
+  --prose-link-hover: #93c5fd;
+  --prose-table-border: #374151;
+  --prose-table-header: #f9fafb;
+  --prose-table-row: #e5e7eb;
+  --prose-table-row-alt: #1f2937;
+  --prose-hr: #374151;
+}
+
+/* Apply CSS variables to elements */
+/* ... (previous general styles remain the same) ... */
+
+/* Navbar specific styles */
+header.bg-white\/80 {
+  background-color: var(--nav-bg) !important;
+}
+
+/* Navigation text styles */
+nav a {
+  color: var(--nav-text) !important;
+}
+
+nav a:hover {
+  color: var(--nav-text-hover) !important;
+}
+
+.text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+.text-gray-800 {
+  color: var(--text-primary) !important;
+}
+
+.text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+/* Logo styles */
+.font-bold {
+  color: var(--text-primary) !important;
+}
+
+/* Prose Styles */
+.prose {
+  color: var(--prose-text);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: var(--prose-headings);
+}
+
+.prose strong {
+  color: var(--prose-bold);
+}
+
+.prose code:not(pre code) {
+  color: var(--prose-code-inline);
+  background-color: var(--prose-code-block-bg);
+}
+
+.prose pre {
+  background-color: var(--prose-pre-bg);
+  color: var(--prose-pre-text);
+}
+
+.prose pre code {
+  color: var(--prose-code-block-text);
+  background-color: transparent;
+}
+
+.prose blockquote {
+  color: var(--prose-blockquote);
+  border-left-color: var(--prose-blockquote-border);
+}
+
+.prose a {
+  color: var(--prose-link);
+}
+
+.prose a:hover {
+  color: var(--prose-link-hover);
+}
+
+.prose table {
+  border-color: var(--prose-table-border);
+}
+
+.prose thead {
+  color: var(--prose-table-header);
+  border-bottom-color: var(--prose-table-border);
+}
+
+.prose tbody tr {
+  color: var(--prose-table-row);
+}
+
+.prose tbody tr:nth-child(2n) {
+  background-color: var(--prose-table-row-alt);
+}
+
+.prose hr {
+  border-color: var(--prose-hr);
+}
+
+/* Add transition for smooth theme changes */
+.prose * {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Apply CSS variables to elements */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.bg-white {
+  background-color: var(--bg-secondary) !important;
+}
+
+.text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+.text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+.border-gray-200 {
+  border-color: var(--border-color) !important;
+}
+
+.shadow-md {
+  box-shadow: var(--card-shadow) !important;
+}
+
+.bg-gray-50 {
+  background-color: var(--bg-primary) !important;
+}
+
+/* Add transition to all themed elements */
+.bg-white,
+.text-gray-900,
+.text-gray-600,
+.border-gray-200,
+.shadow-md,
+.bg-gray-50 {
+  transition: all 0.3s ease;
+}

@@ -2,22 +2,28 @@
   <div class="min-h-screen bg-gray-50">
     <!-- Hero Section -->
     <div class="relative overflow-hidden">
-      <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm">
-        <nav class="container mx-auto px-6 py-4">
-          <div class="flex items-center justify-between">
-            <NuxtLink to="/" class="text-2xl font-bold text-gray-800 hover:text-gray-600 transition-colors">
-              DevTriet
-            </NuxtLink>
-            <div class="space-x-6">
-              <NuxtLink v-for="item in ['Home', 'Blog', 'About']" :key="item"
-                :to="item.toLowerCase() === 'home' ? '/' : `/${item.toLowerCase()}`"
-                class="text-gray-600 hover:text-gray-900 transition-colors">
-                {{ item }}
-              </NuxtLink>
-            </div>
-          </div>
-        </nav>
-      </header>
+ <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm transition-colors duration-300">
+    <nav class="container mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <NuxtLink 
+          to="/" 
+          class="text-2xl font-bold transition-colors duration-300 hover:text-accent"
+        >
+          DevTriet
+        </NuxtLink>
+        <div class="space-x-6">
+          <NuxtLink 
+            v-for="item in ['Home', 'Blog', 'About']" 
+            :key="item"
+            :to="item.toLowerCase() === 'home' ? '/' : `/${item.toLowerCase()}`"
+            class="transition-colors duration-300 hover:text-accent"
+          >
+            {{ item }}
+          </NuxtLink>
+        </div>
+      </div>
+    </nav>
+  </header>
 
       <main class="pt-24">
         <!-- Search Section -->
