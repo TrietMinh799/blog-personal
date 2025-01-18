@@ -121,8 +121,9 @@
 
 <script setup>
 import Footer from '~/components/Footer.vue'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import Fuse from 'fuse.js'
+import DOMPurify from 'dompurify'
 
 // Fetch posts from markdown files
 const { data: posts, pending } = await useAsyncData('posts', () => {
@@ -158,7 +159,8 @@ const debounce = (fn, wait) => {
 // Handle search with debounce
 const handleSearch = debounce(() => {
   if (searchQuery.value && fuse.value) {
-    const results = fuse.value.search(searchQuery.value)
+    const sanitizedQuery = DOMPurify.sanitize(searchQuery.value)
+    const results = fuse.value.search(sanitizedQuery)
     filteredPosts.value = results.map(result => result.item)
   } else {
     filteredPosts.value = posts.value || []
