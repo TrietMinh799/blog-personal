@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   image: {
     provider: 'netlify',
-    domains: ['https://images.unsplash.com'],
+    domains: ['https://images.unsplash.com', 'https://plus.unsplash.com'],
   },
   modules: [
     '@nuxt/content',
