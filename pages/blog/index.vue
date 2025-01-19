@@ -13,25 +13,21 @@
         <div class="flex flex-col md:flex-row md:items-center gap-4">
           <!-- Search -->
           <div class="relative flex-grow">
-            <input
-              v-model="searchQuery"
-              type="text"
-              placeholder="Search articles..."
+            <input v-model="searchQuery" type="text" placeholder="Search articles..."
               class="w-full px-4 py-2 pl-10 bg-white rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500"
-              @input="handleSearch"
-            />
+              @input="handleSearch" />
             <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </span>
           </div>
 
           <!-- Sort Options -->
-          <select
-            v-model="sortOption"
-            class="px-4 py-2 bg-white rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
+          <select v-model="sortOption"
+            class="px-4 py-2 bg-white rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option value="date-desc">Newest First</option>
             <option value="date-asc">Oldest First</option>
             <option value="title">Title A-Z</option>
@@ -41,15 +37,10 @@
 
         <!-- Tags Filter -->
         <div class="flex flex-wrap gap-2">
-          <button
-            v-for="tag in allTags"
-            :key="tag"
-            @click="toggleTag(tag)"
-            class="px-3 py-1 rounded-full text-sm transition-colors"
-            :class="selectedTags.includes(tag) 
-              ? 'bg-blue-500 text-white' 
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
-          >
+          <button v-for="tag in allTags" :key="tag" @click="toggleTag(tag)"
+            class="px-3 py-1 rounded-full text-sm transition-colors" :class="selectedTags.includes(tag)
+              ? 'bg-blue-500 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'">
             #{{ tag }}
           </button>
         </div>
@@ -73,17 +64,10 @@
       <div v-else-if="paginatedPosts.length" class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <article v-for="post in paginatedPosts" :key="post._path"
-            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-            v-motion
-            :initial="{ opacity: 0, y: 50 }"
-            :enter="{ opacity: 1, y: 0 }">
+            class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow" v-motion
+            :initial="{ opacity: 0, y: 50 }" :enter="{ opacity: 1, y: 0 }">
             <NuxtLink :to="post._path" class="block">
-              <img 
-                :src="post.image" 
-                :alt="post.title"
-                class="w-full h-48 object-cover"
-                @error="handleImageError"
-              />
+              <NuxtImg :src="post.image" :alt="post.title" class="w-full h-48 object-cover" @error="handleImageError" />
               <div class="p-6">
                 <div class="flex items-center justify-between mb-2">
                   <time :datetime="post.date" class="text-sm text-blue-500">
@@ -96,11 +80,8 @@
                 </h2>
                 <p class="text-gray-600 mb-4 line-clamp-3">{{ post.excerpt }}</p>
                 <div class="flex flex-wrap gap-2">
-                  <span 
-                    v-for="tag in post.tags" 
-                    :key="tag"
-                    class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full"
-                  >
+                  <span v-for="tag in post.tags" :key="tag"
+                    class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full">
                     #{{ tag }}
                   </span>
                 </div>
@@ -112,21 +93,15 @@
         <!-- Pagination -->
         <div class="mt-12 flex justify-center">
           <nav class="flex items-center gap-2">
-            <button
-              @click="currentPage--"
-              :disabled="currentPage === 1"
-              class="px-4 py-2 rounded-lg border enabled:hover:bg-gray-50 disabled:opacity-50"
-            >
+            <button @click="currentPage--" :disabled="currentPage === 1"
+              class="px-4 py-2 rounded-lg border enabled:hover:bg-gray-50 disabled:opacity-50">
               Previous
             </button>
             <span class="px-4 py-2">
               Page {{ currentPage }} of {{ totalPages }}
             </span>
-            <button
-              @click="currentPage++"
-              :disabled="currentPage === totalPages"
-              class="px-4 py-2 rounded-lg border enabled:hover:bg-gray-50 disabled:opacity-50"
-            >
+            <button @click="currentPage++" :disabled="currentPage === totalPages"
+              class="px-4 py-2 rounded-lg border enabled:hover:bg-gray-50 disabled:opacity-50">
               Next
             </button>
           </nav>
@@ -137,15 +112,12 @@
       <div v-else class="max-w-7xl mx-auto text-center py-12">
         <h2 class="text-2xl font-semibold text-gray-900 mb-4">No Posts Found</h2>
         <p class="text-gray-600 mb-8">
-          {{ searchQuery || selectedTags.length 
-            ? 'Try adjusting your filters or search terms' 
+          {{ searchQuery || selectedTags.length
+            ? 'Try adjusting your filters or search terms'
             : 'Check back later for new content!' }}
         </p>
-        <button
-          v-if="searchQuery || selectedTags.length"
-          @click="clearFilters"
-          class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-        >
+        <button v-if="searchQuery || selectedTags.length" @click="clearFilters"
+          class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
           Clear All Filters
         </button>
       </div>
@@ -191,7 +163,7 @@ const allTags = computed(() => {
 // Filter and sort posts
 const filteredPosts = computed(() => {
   if (!posts.value) return []
-  
+
   let filtered = [...posts.value]
 
   // Apply search
@@ -202,7 +174,7 @@ const filteredPosts = computed(() => {
 
   // Apply tag filters
   if (selectedTags.value.length > 0) {
-    filtered = filtered.filter(post => 
+    filtered = filtered.filter(post =>
       selectedTags.value.every(tag => post.tags?.includes(tag))
     )
   }
@@ -227,7 +199,7 @@ const filteredPosts = computed(() => {
 })
 
 // Pagination
-const totalPages = computed(() => 
+const totalPages = computed(() =>
   Math.ceil(filteredPosts.value.length / postsPerPage)
 )
 
@@ -289,9 +261,9 @@ function debounce(fn, wait) {
 useHead({
   title: 'Blog - All Articles',
   meta: [
-    { 
-      name: 'description', 
-      content: 'Browse all our articles about web development, technology, and more.' 
+    {
+      name: 'description',
+      content: 'Browse all our articles about web development, technology, and more.'
     }
   ]
 })

@@ -21,10 +21,8 @@
       <div class="bg-white rounded-lg shadow-lg p-8 text-center">
         <h1 class="text-2xl font-bold text-gray-900 mb-4">Post Not Found</h1>
         <p class="text-gray-600 mb-6">The blog post you're looking for doesn't exist or has been moved.</p>
-        <NuxtLink 
-          to="/blog" 
-          class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-        >
+        <NuxtLink to="/blog"
+          class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
           Back to Blog
         </NuxtLink>
       </div>
@@ -33,14 +31,9 @@
     <!-- Content State -->
     <template v-else-if="post">
       <!-- Back to top button -->
-      <button 
-        @click="scrollToTop" 
-        v-show="showBackToTop"
+      <button @click="scrollToTop" v-show="showBackToTop"
         class="fixed bottom-8 right-8 bg-gray-900 text-white p-3 rounded-full shadow-lg hover:bg-gray-800 transition-all duration-300 z-50"
-        v-motion
-        :initial="{ scale: 0 }"
-        :enter="{ scale: 1 }"
-      >
+        v-motion :initial="{ scale: 0 }" :enter="{ scale: 1 }">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
@@ -48,18 +41,10 @@
 
       <main class="container mx-auto px-4 md:px-6 py-8 max-w-4xl">
         <!-- Article Header -->
-        <article 
-          v-motion
-          :initial="{ opacity: 0, y: 50 }"
-          :enter="{ opacity: 1, y: 0 }"
-          class="bg-white rounded-lg shadow-lg overflow-hidden"
-        >
-          <img 
-            :src="post.image" 
-            :alt="post.title"
-            class="w-full h-[400px] object-cover"
-          />
-          
+        <article v-motion :initial="{ opacity: 0, y: 50 }" :enter="{ opacity: 1, y: 0 }"
+          class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <NuxtImg :src="post.image" :alt="post.title" class="w-full h-[400px] object-cover" />
+
           <div class="p-8">
             <!-- Breadcrumb -->
             <nav class="flex mb-6 text-gray-500 text-sm">
@@ -81,23 +66,16 @@
             </div>
 
             <!-- Article Content -->
-            <div 
-              class="prose prose-lg max-w-none"
-              v-motion
-              :initial="{ opacity: 0 }"
-              :enter="{ opacity: 1, transition: { delay: 300 } }"
-            >
+            <div class="prose prose-lg max-w-none" v-motion :initial="{ opacity: 0 }"
+              :enter="{ opacity: 1, transition: { delay: 300 } }">
               <ContentRenderer :value="post" />
             </div>
 
             <!-- Tags -->
             <div v-if="post.tags" class="mt-8 pt-8 border-t border-gray-200">
               <div class="flex flex-wrap gap-2">
-                <span 
-                  v-for="tag in post.tags" 
-                  :key="tag"
-                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-colors"
-                >
+                <span v-for="tag in post.tags" :key="tag"
+                  class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-gray-200 transition-colors">
                   #{{ tag }}
                 </span>
               </div>
@@ -106,23 +84,15 @@
         </article>
 
         <!-- Related Posts -->
-        <section 
-          v-if="relatedPosts?.length"
-          class="mt-12"
-          v-motion
-          :initial="{ opacity: 0, y: 50 }"
-          :enter="{ opacity: 1, y: 0, transition: { delay: 500 } }"
-        >
+        <section v-if="relatedPosts?.length" class="mt-12" v-motion :initial="{ opacity: 0, y: 50 }"
+          :enter="{ opacity: 1, y: 0, transition: { delay: 500 } }">
           <h2 class="text-2xl font-bold text-gray-900 mb-6">Related Posts</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <NuxtLink 
-              v-for="relatedPost in relatedPosts" 
-              :key="relatedPost._path"
-              :to="relatedPost._path"
-              class="group"
-            >
-              <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 group-hover:scale-102">
-                <img :src="relatedPost.image" :alt="relatedPost.title" class="w-full h-48 object-cover" />
+            <NuxtLink v-for="relatedPost in relatedPosts" :key="relatedPost._path" :to="relatedPost._path"
+              class="group">
+              <div
+                class="bg-white rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 group-hover:scale-102">
+                <NuxtImg :src="relatedPost.image" :alt="relatedPost.title" class="w-full h-48 object-cover" />
                 <div class="p-4">
                   <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
                     {{ relatedPost.title }}
@@ -189,9 +159,9 @@ const { data: relatedPosts } = await useAsyncData(
   'related-posts',
   async () => {
     if (!post.value?.tags?.length) return []
-    
+
     return queryContent('blog')
-      .where({ 
+      .where({
         _path: { $ne: `/blog/${route.params.slug}` },
         tags: { $contains: post.value.tags[0] }
       })

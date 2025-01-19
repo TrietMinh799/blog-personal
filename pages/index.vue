@@ -81,7 +81,8 @@
               :style="{ animationDelay: `${index * 100}ms` }" v-motion :initial="{ opacity: 0, y: 50 }"
               :enter="{ opacity: 1, y: 0 }">
               <NuxtLink :to="post._path">
-                <img :src="post.image" :alt="post.title" class="w-full h-48 object-cover" @error="handleImageError" />
+                <NuxtImg :src="post.image" :alt="post.title" class="w-full h-48 object-cover"
+                  @error="handleImageError" />
                 <div class="p-6">
                   <div class="flex items-center justify-between mb-2">
                     <span class="text-sm text-blue-500">{{ formatDate(post.date) }}</span>
